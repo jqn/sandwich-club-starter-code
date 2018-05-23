@@ -70,14 +70,17 @@ public class DetailActivity extends AppCompatActivity {
         TextView description = findViewById(R.id.description_tv);
 
         if (sandwich.getAlsoKnownAs().isEmpty()) {
-            alsoKnown.setVisibility(View.INVISIBLE);
+            alsoKnown.setText("No other names found");
+        } else {
+            alsoKnown.setText(TextUtils.join(", ", sandwich.getAlsoKnownAs()));
         }
 
-        alsoKnown.setText(TextUtils.join(" ,", sandwich.getAlsoKnownAs()));
-
-        ingredients.setText(TextUtils.join(" ,", sandwich.getIngredients()));
-
-        placeOfOrigin.setText(sandwich.getPlaceOfOrigin());
+        if (sandwich.getPlaceOfOrigin().isEmpty()) {
+            placeOfOrigin.setText("No place of origin found");
+        } else {
+            placeOfOrigin.setText(sandwich.getPlaceOfOrigin());
+        }
+        ingredients.setText(TextUtils.join(", ", sandwich.getIngredients()));
 
         description.setText(sandwich.getDescription());
 

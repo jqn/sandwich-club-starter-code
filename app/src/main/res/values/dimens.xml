@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- margins -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- padding -->
+    <dimen name="text_padding">8dp</dimen>
+    <dimen name="text_double_padding">16dp</dimen>
+    <!-- Typography -->
+    <dimen name="h6">20sp</dimen>
+    <dimen name="body">16sp</dimen>
 </resources>
