@@ -3,7 +3,9 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -15,6 +17,8 @@ public class DetailActivity extends AppCompatActivity {
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
 
+    Sandwich sandwich = new Sandwich();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +27,7 @@ public class DetailActivity extends AppCompatActivity {
         ImageView ingredientsIv = findViewById(R.id.image_iv);
 
         Intent intent = getIntent();
+
         if (intent == null) {
             closeOnError();
         }
@@ -36,7 +41,8 @@ public class DetailActivity extends AppCompatActivity {
 
         String[] sandwiches = getResources().getStringArray(R.array.sandwich_details);
         String json = sandwiches[position];
-        Sandwich sandwich = JsonUtils.parseSandwichJson(json);
+        sandwich = JsonUtils.parseSandwichJson(json);
+
         if (sandwich == null) {
             // Sandwich data unavailable
             closeOnError();
@@ -57,6 +63,22 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populateUI() {
+        TextView alsoKnown = findViewById(R.id.also_known_tv);
+        TextView ingredients = findViewById(R.id.ingredients_tv);
+        TextView placeOfOrigin = findViewById(R.id.origin_tv);
+        TextView description = findViewById(R.id.description_tv);
+
+        if(sandwich.getAlsoKnownAs().isEmpty()) {
+            alsoKnown.setVisibility(View.INVISIBLE);
+        }
+
+        alsoKnown.setText(sandwich.getAlsoKnownAs().toString());
+
+        ingredients.setText(sandwich.getIngredients().toString());
+
+        placeOfOrigin.setText(sandwich.getPlaceOfOrigin());
+
+        description.setText(sandwich.getDescription());
 
     }
 }
