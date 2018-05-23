@@ -19,7 +19,7 @@ public class JsonUtils {
 
             sandwich.setMainName(object.getJSONObject("name").getString("mainName"));
 
-            ArrayList<String> listKnownAs = new ArrayList<String>();
+            ArrayList<String> listKnownAs = new ArrayList<>();
 
             JSONArray arrayKnownAs = object.getJSONObject("name").getJSONArray("alsoKnownAs");
 
@@ -38,7 +38,7 @@ public class JsonUtils {
 
             sandwich.setImage(object.getString("image"));
 
-            ArrayList<String> ingredientsList = new ArrayList<String>();
+            ArrayList<String> ingredientsList = new ArrayList<>();
 
             JSONArray arrayIngredients = object.getJSONArray("ingredients");
             for(int i =0; i < arrayIngredients.length(); i++) {
